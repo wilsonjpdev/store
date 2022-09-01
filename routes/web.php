@@ -18,12 +18,6 @@ Route::get('/', function () {
 });
 
 Route::prefix('/admin')->name('admin.')->group(function () {
-    Route::prefix('/stores')->name('stores.')->group(function() {
-        Route::get('/', [\App\Http\Controllers\Admin\StoreController::class, 'index'])->name('index');
-        Route::get('/create', [\App\Http\Controllers\Admin\StoreController::class, 'create'])->name('create');
-        Route::post('/store', [\App\Http\Controllers\Admin\StoreController::class, 'store'])->name('store');
-        Route::get('/{store}/edit', [\App\Http\Controllers\Admin\StoreController::class, 'edit'])->name('edit');
-        Route::post('/update/{store}', [\App\Http\Controllers\Admin\StoreController::class, 'update'])->name('update');;
-        Route::get('/destroy/{store}', [\App\Http\Controllers\Admin\StoreController::class, 'destroy'])->name('destroy');;
-    });    
+    Route::resource('/stores', \App\Http\Controllers\Admin\StoreController::class);
+    Route::resource('/products', \App\Http\Controllers\Admin\ProductController::class);
 });
